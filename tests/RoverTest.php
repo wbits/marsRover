@@ -1,11 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dojo;
 
-final class RoverTest
-{
+use PHPUnit\Framework\TestCase;
 
+final class RoverTest extends TestCase
+{
+    public function testFoo()
+    {
+        self::assertTrue(true);
+    }
 }
 
