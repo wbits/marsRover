@@ -23,8 +23,9 @@ final class ObstacleMap
         return new self($obstacles);
     }
 
-    public function isPositionBlocked($create)
+    public function isPositionBlocked(Position $position): bool
     {
+        return array_key_exists((string) $position, $this->obstacles);
     }
 }
 
