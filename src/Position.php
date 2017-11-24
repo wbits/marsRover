@@ -13,8 +13,8 @@ final class Position
 
     private function __construct(int $x, int $y)
     {
-        $this->x = $x;
-        $this->y = $y;
+        $this->x = self::calculateTerrainWrap($x);
+        $this->y = self::calculateTerrainWrap($y);
     }
 
     public static function create($x, $y)
@@ -38,6 +38,11 @@ final class Position
             'x' => $this->x,
             'y' => $this->y,
         ];
+    }
+
+    public function toString(): string
+    {
+        return sprintf('%d%d', $this->x, $this->y);
     }
 
     private static function calculateTerrainWrap(int $position)
