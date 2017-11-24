@@ -15,17 +15,20 @@ final class Rover
 
     public static function initializeWithStartingPosition(int $x, int $y, string $bearing) : Rover
     {
-        return new self(new Position($x, $y, $bearing));
+        return new self(Position::create($x, $y, $bearing));
     }
 
     public function executeCommand(string $string): array
     {
-        if ($string == 'l') {
-            $this->turnLeft();
-        }
+        $commandList = str_split($string);
+        foreach ($commandList as $command) {
+            if ($command == 'l') {
+                $this->turnLeft();
+            }
 
-        if ($string == 'r') {
-            $this->turnRight();
+            if ($command == 'r') {
+                $this->turnRight();
+            }
         }
 
         return $this->position->toArray();
