@@ -8,11 +8,22 @@ use PHPUnit\Framework\TestCase;
 
 final class RoverTest extends TestCase
 {
+    /** @var Rover */
+    private $rover;
+
+    protected function setUp()
+    {
+        $this->rover = Rover::initializeWithStartingPosition(0,0, 'N');
+    }
+
     public function testItGetsInitializedWithStartingPositionAndBearing()
     {
-        $rover = Rover::initializeWithStartingPosition(0,0, 'N');
+        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'N'], $this->rover->executeCommand(''));
+    }
 
-        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'N'], $rover->executeCommand(''));
+    public function testItCanTurnLeft()
+    {
+        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'W'], $this->rover->executeCommand('l'));
     }
 }
 
