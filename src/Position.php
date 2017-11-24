@@ -17,9 +17,14 @@ final class Position
         $this->bearing = $bearing;
     }
 
-    public static function alterBearingCounterClockWise(Position $position)
+    public static function alterBearingCounterClockWise(Position $position): Position
     {
         return new self($position->x, $position->y, 'W');
+    }
+
+    public static function alterBearingClockWise(Position $position): Position
+    {
+        return new self($position->x, $position->y, 'E');
     }
 
     public function toArray(): array

@@ -24,12 +24,21 @@ final class Rover
             $this->turnLeft();
         }
 
+        if ($string == 'r') {
+            $this->turnRight();
+        }
+
         return $this->position->toArray();
     }
 
     private function turnLeft()
     {
         $this->position = Position::alterBearingCounterClockWise($this->position);
+    }
+
+    private function turnRight()
+    {
+        $this->position = Position::alterBearingClockWise($this->position);
     }
 }
 
