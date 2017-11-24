@@ -71,5 +71,12 @@ final class RoverTest extends TestCase
     {
         self::assertTrue($this->rover->perceivedObstacleInPosition(Position::create(4, 0)));
     }
+
+    public function testItStopsWhenItEncountersAnObstacle()
+    {
+        $this->expectException(RouteBlockedByObstacleException::class);
+
+        $this->rover->executeCommands('rfffffffffff');
+    }
 }
 
