@@ -10,7 +10,7 @@ final class Position
     private $y;
     private $bearing;
 
-    private function __construct(int $x, int $y, int $bearing)
+    private function __construct(int $x, int $y, Bearing $bearing)
     {
         $this->x = $x;
         $this->y = $y;
@@ -19,17 +19,17 @@ final class Position
 
     public static function create($x, $y, string $bearing)
     {
-        return new self($x, $y, array_search($bearing, self::$bearings));
+        return new self($x, $y, Bearing::createWithDirection($bearing));
     }
 
     public static function alterBearingCounterClockWise(Position $position): Position
     {
-        return new self($position->x, $position->y, ($position->bearing + 3) % 4);
+        return new self($position->x, $position->y, Bearing::turnLeft($position->bearing));
     }
 
     public static function alterBearingClockWise(Position $position): Position
     {
-        return new self($position->x, $position->y, ($position->bearing + 1) % 4);
+        return new self($position->x, $position->y, Bearing::turnRight($position->bearing));
     }
 
     public function toArray(): array
@@ -37,15 +37,8 @@ final class Position
         return [
             'x' => $this->x,
             'y' => $this->y,
-            'h' => self::$bearings[$this->bearing],
+            'h' => (string) $this->bearing,
         ];
     }
-
-    private static $bearings = [
-        0 => 'N',
-        1 => 'E',
-        2 => 'S',
-        3 => 'W',
-    ];
 }
 
