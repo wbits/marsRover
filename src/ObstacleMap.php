@@ -22,5 +22,9 @@ final class ObstacleMap
 
         return new self($obstacles);
     }
+
+    public function isPositionBlocked($create)
+    {
+    }
 }
 
