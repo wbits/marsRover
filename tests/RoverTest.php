@@ -13,7 +13,8 @@ final class RoverTest extends TestCase
 
     protected function setUp()
     {
-        $this->rover = Rover::initializeWithStartingPositionAndObstacleMap(0,0, 'N', new ObstacleMap());
+        $obstacleMap = ObstacleMap::createWithObstacles(Position::create(4,0));
+        $this->rover = Rover::initializeWithStartingPositionAndObstacleMap(0,0, 'N', $obstacleMap);
     }
 
     public function testItGetsInitializedWithStartingPositionAndBearing()

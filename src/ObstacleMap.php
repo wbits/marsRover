@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dojo;
 
@@ -28,4 +28,3 @@ final class ObstacleMap
         return array_key_exists((string) $position, $this->obstacles);
     }
 }
-
