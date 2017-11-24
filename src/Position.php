@@ -9,6 +9,8 @@ final class Position
     private $x;
     private $y;
 
+    const OUTER_LIMIT = 10;
+
     private function __construct(int $x, int $y)
     {
         $this->x = $x;
@@ -22,16 +24,12 @@ final class Position
 
     public static function createWithModifiedXPos(Position $position, callable $modify)
     {
-        $newPosition = (($modify($position->x)) % 10);
-
-        return new self($newPosition, $position->y);
+        return new self(self::calculateTerrainWrap($modify($position->x)), $position->y);
     }
 
     public static function createWithModifiedYPos(Position $position, callable $modify)
     {
-        $newPosition = (($modify($position->y)) % 10);
-
-        return new self($position->x, $newPosition);
+        return new self($position->x, self::calculateTerrainWrap($modify($position->y)));
     }
 
     public function toArray(): array
@@ -40,6 +38,11 @@ final class Position
             'x' => $this->x,
             'y' => $this->y,
         ];
+    }
+
+    private static function calculateTerrainWrap(int $position)
+    {
+        return $position % self::OUTER_LIMIT;
     }
 }
 
