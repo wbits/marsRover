@@ -26,6 +26,9 @@ final class CommandRunner
             case 'f':
                 $rover->moveForward();
                 break;
+            case 'b':
+                $rover->moveBackward();
+                break;
             case 'l':
                 $rover->turnLeft();
                 break;

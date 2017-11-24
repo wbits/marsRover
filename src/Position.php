@@ -22,18 +22,18 @@ final class Position
         return new self($x, $y, Bearing::createWithDirection($bearing));
     }
 
-    public static function moveForward(Position $position)
+    public static function move(Position $position, int $modifier = 1)
     {
         $direction = (string) $position->bearing;
         switch ($direction) {
             case 'N':
-                return new self($position->x, $position->y + 1, $position->bearing);
+                return new self($position->x, $position->y + $modifier, $position->bearing);
             case 'S':
-                return new self($position->x, $position->y - 1, $position->bearing);
+                return new self($position->x, $position->y - $modifier, $position->bearing);
             case 'E':
-                return new self($position->x + 1, $position->y, $position->bearing);
+                return new self($position->x + $modifier, $position->y, $position->bearing);
             case 'W':
-                return new self($position->x - 1, $position->y, $position->bearing);
+                return new self($position->x - $modifier, $position->y, $position->bearing);
         }
     }
 

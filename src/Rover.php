@@ -28,7 +28,12 @@ final class Rover
 
     public function moveForward()
     {
-        $this->position = Position::moveForward($this->position);
+        $this->position = Position::move($this->position);
+    }
+
+    public function moveBackward()
+    {
+        $this->position = Position::move($this->position, -1);
     }
 
     public function turnLeft()
