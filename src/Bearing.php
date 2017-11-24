@@ -26,12 +26,12 @@ final class Bearing
         return new self(array_search($direction, self::DIRECTIONS));
     }
 
-    public static function turnLeft(Bearing $bearing)
+    public static function createWithALeftTurn(Bearing $bearing)
     {
         return new self(($bearing->bearing + 3) % 4);
     }
 
-    public static function turnRight(Bearing $bearing)
+    public static function createWithARightTurn(Bearing $bearing)
     {
         return new self(($bearing->bearing + 1) % 4);
     }

@@ -43,11 +43,11 @@ final class Rover
 
     public function turnLeft()
     {
-        $this->bearing = Bearing::turnLeft($this->bearing);
+        $this->bearing = Bearing::createWithALeftTurn($this->bearing);
     }
 
     public function turnRight()
     {
-        $this->bearing = Bearing::turnRight($this->bearing);
+        $this->bearing = Bearing::createWithARightTurn($this->bearing);
     }
 }

@@ -60,5 +60,10 @@ final class RoverTest extends TestCase
     {
         self::assertEquals(['x' => -1, 'y' => 0, 'h' => 'W'], $this->rover->executeCommands('lfffffffffff'));
     }
+
+    public function testItCanObserveTheTerrainForObstacles()
+    {
+        self::assertFalse($this->rover->perceivedObstacleInPosition(Position::create(0, 1)));
+    }
 }
 
