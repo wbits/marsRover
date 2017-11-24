@@ -63,7 +63,7 @@ final class Rover
         $this->bearing = Bearing::createWithARightTurn($this->bearing);
     }
 
-    public function perceivedObstacleInPosition(Position $position): bool
+    private function perceivedObstacleInPosition(Position $position): bool
     {
         return $this->map->isPositionBlocked($position);
     }
