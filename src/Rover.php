@@ -36,9 +36,7 @@ final class Rover
     public function moveForward()
     {
         $newPosition = $this->bearing->stepForward($this->position);
-        if ($this->perceivedObstacleInPosition($newPosition)) {
-            throw new RouteBlockedByObstacleException();
-        }
+        $this->validateNewPosition($newPosition);
 
         $this->position = $newPosition;
     }
@@ -46,9 +44,7 @@ final class Rover
     public function moveBackward()
     {
         $newPosition = $this->bearing->stepBackward($this->position);
-        if ($this->perceivedObstacleInPosition($newPosition)) {
-            throw new RouteBlockedByObstacleException();
-        }
+        $this->validateNewPosition($newPosition);
 
         $this->position = $this->bearing->stepBackward($this->position);
     }
@@ -66,5 +62,12 @@ final class Rover
     private function perceivedObstacleInPosition(Position $position): bool
     {
         return $this->map->isPositionBlocked($position);
+    }
+
+    private function validateNewPosition(Position $position)
+    {
+        if ($this->perceivedObstacleInPosition($position)) {
+            throw new RouteBlockedByObstacleException();
+        }
     }
 }
