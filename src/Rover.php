@@ -21,7 +21,7 @@ final class Rover
     public function executeCommand(string $string): array
     {
         if ($string == 'l') {
-            $this->position = new Position(0, 0, 'W');
+            $this->position = Position::turnLeft($this->position);
         }
 
         return $this->position->toArray();

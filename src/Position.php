@@ -17,6 +17,11 @@ final class Position
         $this->bearing = $bearing;
     }
 
+    public static function turnLeft(Position $position)
+    {
+        return new self($position->x, $position->y, 'W');
+    }
+
     public function toArray(): array
     {
         return [
