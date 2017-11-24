@@ -27,7 +27,9 @@ final class Position
 
     public static function createWithAdvancedYPos(Position $position, int $modifier)
     {
-        return new self($position->x, $position->y + $modifier);
+        $newPosition = (($position->y + $modifier + 1) % 10) - 1;
+
+        return new self($position->x, $newPosition);
     }
 
     public function toArray(): array
