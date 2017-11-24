@@ -8,43 +8,26 @@ final class Position
 {
     private $x;
     private $y;
-    private $bearing;
 
-    private function __construct(int $x, int $y, Bearing $bearing)
+    private function __construct(int $x, int $y)
     {
         $this->x = $x;
         $this->y = $y;
-        $this->bearing = $bearing;
     }
 
-    public static function create($x, $y, string $bearing)
+    public static function create($x, $y)
     {
-        return new self($x, $y, Bearing::createWithDirection($bearing));
+        return new self($x, $y);
     }
 
-    public static function move(Position $position, int $modifier = 1)
+    public static function createWithAdvancedXPos(Position $position, int $modifier)
     {
-        $direction = (string) $position->bearing;
-        switch ($direction) {
-            case 'N':
-                return new self($position->x, $position->y + $modifier, $position->bearing);
-            case 'S':
-                return new self($position->x, $position->y - $modifier, $position->bearing);
-            case 'E':
-                return new self($position->x + $modifier, $position->y, $position->bearing);
-            case 'W':
-                return new self($position->x - $modifier, $position->y, $position->bearing);
-        }
+        return new self($position->x + $modifier, $position->y);
     }
 
-    public static function alterBearingCounterClockWise(Position $position): Position
+    public static function createWithAdvancedYPos(Position $position, int $modifier)
     {
-        return new self($position->x, $position->y, Bearing::turnLeft($position->bearing));
-    }
-
-    public static function alterBearingClockWise(Position $position): Position
-    {
-        return new self($position->x, $position->y, Bearing::turnRight($position->bearing));
+        return new self($position->x, $position->y + $modifier);
     }
 
     public function toArray(): array
@@ -52,7 +35,6 @@ final class Position
         return [
             'x' => $this->x,
             'y' => $this->y,
-            'h' => (string) $this->bearing,
         ];
     }
 }

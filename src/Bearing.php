@@ -6,13 +6,19 @@ namespace Dojo;
 
 final class Bearing
 {
-    private $bearing;
+    const NORTH = 0;
+    const EAST = 1;
+    const SOUTH = 2;
+    const WEST = 3;
+    const DIRECTIONS = [self::NORTH => 'N', self::EAST => 'E', self::SOUTH => 'S', self::WEST => 'W'];
 
-    const DIRECTIONS = [0 => 'N', 1 => 'E', 2 => 'S', 3 => 'W'];
+    private $bearing;
+    private $step;
 
     private function __construct(int $bearing)
     {
         $this->bearing = $bearing;
+        $this->step = in_array((string) $bearing, [self::SOUTH, self::WEST]) ? -1 : 1;
     }
 
     public static function createWithDirection(string $direction)
@@ -30,9 +36,31 @@ final class Bearing
         return new self(($bearing->bearing + 1) % 4);
     }
 
+    public function stepForward(Position $position): Position
+    {
+        return $this->move($position, 1);
+    }
+
+    public function stepBackward(Position $position): Position
+    {
+        return $this->move($position, -1);
+    }
+
     public function __toString(): string
     {
         return self::DIRECTIONS[$this->bearing];
+    }
+
+    private function move(Position $position, int $modifier): Position
+    {
+        switch ($this->bearing) {
+            case self::NORTH:
+            case self::SOUTH:
+                return Position::createWithAdvancedYPos($position, $this->step * $modifier);
+            case self::EAST:
+            case self::WEST:
+                return Position::createWithAdvancedXPos($position, $this->step * $modifier);
+        }
     }
 }
 
