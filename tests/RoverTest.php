@@ -55,5 +55,10 @@ final class RoverTest extends TestCase
     {
         self::assertEquals(['x' => 0, 'y' => 1, 'h' => 'N'], $this->rover->executeCommands('fffffffffff'));
     }
+
+    public function testItMovesOnAWrappedGridOnHorizontalAxis()
+    {
+        self::assertEquals(['x' => -1, 'y' => 0, 'h' => 'W'], $this->rover->executeCommands('lfffffffffff'));
+    }
 }
 
