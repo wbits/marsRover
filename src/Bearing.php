@@ -53,13 +53,17 @@ final class Bearing
 
     private function move(Position $position, int $modifier): Position
     {
+        $modify = function (int $number) use ($modifier) {
+            return $number + ($this->step * $modifier);
+        };
+
         switch ($this->bearing) {
             case self::NORTH:
             case self::SOUTH:
-                return Position::createWithAdvancedYPos($position, $this->step * $modifier);
+                return Position::createWithModifiedYPos($position, $modify);
             case self::EAST:
             case self::WEST:
-                return Position::createWithAdvancedXPos($position, $this->step * $modifier);
+                return Position::createWithModifiedXPos($position, $modify);
         }
     }
 }

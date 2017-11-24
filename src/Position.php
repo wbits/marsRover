@@ -20,14 +20,14 @@ final class Position
         return new self($x, $y);
     }
 
-    public static function createWithAdvancedXPos(Position $position, int $modifier)
+    public static function createWithModifiedXPos(Position $position, callable $modify)
     {
-        return new self($position->x + $modifier, $position->y);
+        return new self($modify($position->x), $position->y);
     }
 
-    public static function createWithAdvancedYPos(Position $position, int $modifier)
+    public static function createWithModifiedYPos(Position $position, callable $modify)
     {
-        $newPosition = (($position->y + $modifier + 1) % 10) - 1;
+        $newPosition = (($modify($position->y)) % 10);
 
         return new self($position->x, $newPosition);
     }
