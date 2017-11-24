@@ -21,10 +21,15 @@ final class Rover
     public function executeCommand(string $string): array
     {
         if ($string == 'l') {
-            $this->position = Position::turnLeft($this->position);
+            $this->turnLeft();
         }
 
         return $this->position->toArray();
+    }
+
+    private function turnLeft()
+    {
+        $this->position = Position::alterBearingCounterClockWise($this->position);
     }
 }
 

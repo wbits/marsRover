@@ -17,7 +17,7 @@ final class Position
         $this->bearing = $bearing;
     }
 
-    public static function turnLeft(Position $position)
+    public static function alterBearingCounterClockWise(Position $position)
     {
         return new self($position->x, $position->y, 'W');
     }
