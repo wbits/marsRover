@@ -8,16 +8,18 @@ final class Rover
 {
     private $position;
     private $bearing;
+    private $map;
 
-    private function __construct(Position $position, Bearing $bearing) {
+    private function __construct(Position $position, Bearing $bearing, ObstacleMap $map) {
 
         $this->position = $position;
         $this->bearing = $bearing;
+        $this->map = $map;
     }
 
-    public static function initializeWithStartingPosition(int $x, int $y, string $bearing) : Rover
+    public static function initializeWithStartingPositionAndObstacleMap(int $x, int $y, string $bearing, ObstacleMap $map) : Rover
     {
-        return new self(Position::create($x, $y), Bearing::createWithDirection($bearing));
+        return new self(Position::create($x, $y), Bearing::createWithDirection($bearing), $map);
     }
 
     public function executeCommands(string $string): array
