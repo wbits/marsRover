@@ -40,7 +40,7 @@ final class Position
         ];
     }
 
-    public function toString(): string
+    public function __toString(): string
     {
         return sprintf('%d%d', $this->x, $this->y);
     }
