@@ -13,9 +13,9 @@ final class Rover
         $this->position = $position;
     }
 
-    public static function initializeWithStartingPosition(int $x, int $y) : Rover
+    public static function initializeWithStartingPosition(int $x, int $y, string $bearing) : Rover
     {
-        return new self(new Position($x, $y));
+        return new self(new Position($x, $y, $bearing));
     }
 
     public function executeCommand(string $string): array

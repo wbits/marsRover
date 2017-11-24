@@ -8,11 +8,13 @@ final class Position
 {
     private $x;
     private $y;
+    private $bearing;
 
-    public function __construct(int $x, int $y)
+    public function __construct(int $x, int $y, string $bearing)
     {
         $this->x = $x;
         $this->y = $y;
+        $this->bearing = $bearing;
     }
 
     public function toArray(): array
@@ -20,6 +22,7 @@ final class Position
         return [
             'x' => $this->x,
             'y' => $this->y,
+            'h' => $this->bearing,
         ];
     }
 }
