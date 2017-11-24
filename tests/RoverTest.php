@@ -18,27 +18,27 @@ final class RoverTest extends TestCase
 
     public function testItGetsInitializedWithStartingPositionAndBearing()
     {
-        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'N'], $this->rover->executeCommand(''));
+        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'N'], $this->rover->executeCommands(''));
     }
 
     public function testItCanTurnLeft()
     {
-        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'W'], $this->rover->executeCommand('l'));
+        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'W'], $this->rover->executeCommands('l'));
     }
 
     public function testItCanTurnRight()
     {
-        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'E'], $this->rover->executeCommand('r'));
+        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'E'], $this->rover->executeCommands('r'));
     }
 
     public function testICanTurnTwice()
     {
-        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'S'], $this->rover->executeCommand('ll'));
+        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'S'], $this->rover->executeCommands('ll'));
     }
 
     public function testItCanMoveForward()
     {
-        self::assertEquals(['x' => 0, 'y' => 1, 'h' => 'N'], $this->rover->executeCommand('f'));
+        self::assertEquals(['x' => 0, 'y' => 1, 'h' => 'N'], $this->rover->executeCommands('f'));
     }
 }
 

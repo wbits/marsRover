@@ -18,32 +18,25 @@ final class Rover
         return new self(Position::create($x, $y, $bearing));
     }
 
-    public function executeCommand(string $string): array
+    public function executeCommands(string $string): array
     {
-        $commandList = str_split($string);
-        foreach ($commandList as $command) {
-            if ($command === 'l') {
-                $this->turnLeft();
-            }
-
-            if ($command === 'r') {
-                $this->turnRight();
-            }
-
-            if ($command === 'f') {
-                $this->position = Position::moveForward($this->position);
-            }
-        }
+        $commandRunner = new CommandRunner($string);
+        $commandRunner->executeOnRover($this);
 
         return $this->position->toArray();
     }
 
-    private function turnLeft()
+    public function moveForward()
+    {
+        $this->position = Position::moveForward($this->position);
+    }
+
+    public function turnLeft()
     {
         $this->position = Position::alterBearingCounterClockWise($this->position);
     }
 
-    private function turnRight()
+    public function turnRight()
     {
         $this->position = Position::alterBearingClockWise($this->position);
     }
