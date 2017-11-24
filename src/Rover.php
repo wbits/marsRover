@@ -50,4 +50,9 @@ final class Rover
     {
         $this->bearing = Bearing::createWithARightTurn($this->bearing);
     }
+
+    public function perceivedObstacleInPosition(Position $position)
+    {
+        return false;
+    }
 }
