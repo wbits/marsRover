@@ -30,5 +30,10 @@ final class RoverTest extends TestCase
     {
         self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'E'], $this->rover->executeCommand('r'));
     }
+
+    public function testICanTurnTwice()
+    {
+        self::assertEquals(['x' => 0, 'y' => 0, 'h' => 'S'], $this->rover->executeCommand('ll'));
+    }
 }
 
