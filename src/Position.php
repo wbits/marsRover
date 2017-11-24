@@ -17,17 +17,17 @@ final class Position
         $this->y = self::calculateTerrainWrap($y);
     }
 
-    public static function create($x, $y)
+    public static function create($x, $y): Position
     {
         return new self($x, $y);
     }
 
-    public static function createWithModifiedXPos(Position $position, callable $modify)
+    public static function createWithModifiedXPos(Position $position, callable $modify): Position
     {
         return new self(self::calculateTerrainWrap($modify($position->x)), $position->y);
     }
 
-    public static function createWithModifiedYPos(Position $position, callable $modify)
+    public static function createWithModifiedYPos(Position $position, callable $modify): Position
     {
         return new self($position->x, self::calculateTerrainWrap($modify($position->y)));
     }
@@ -45,7 +45,7 @@ final class Position
         return sprintf('%d%d', $this->x, $this->y);
     }
 
-    private static function calculateTerrainWrap(int $position)
+    private static function calculateTerrainWrap(int $position): int
     {
         return $position % self::OUTER_LIMIT;
     }

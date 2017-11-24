@@ -21,17 +21,17 @@ final class Bearing
         $this->step = in_array((string) $bearing, [self::SOUTH, self::WEST]) ? -1 : 1;
     }
 
-    public static function createWithDirection(string $direction)
+    public static function createWithDirection(string $direction): Bearing
     {
         return new self(array_search($direction, self::DIRECTIONS));
     }
 
-    public static function createWithALeftTurn(Bearing $bearing)
+    public static function createWithALeftTurn(Bearing $bearing): Bearing
     {
         return new self(($bearing->bearing + 3) % 4);
     }
 
-    public static function createWithARightTurn(Bearing $bearing)
+    public static function createWithARightTurn(Bearing $bearing): Bearing
     {
         return new self(($bearing->bearing + 1) % 4);
     }
