@@ -22,6 +22,11 @@ final class Position
         return new self($x, $y, Bearing::createWithDirection($bearing));
     }
 
+    public static function moveForward(Position $position)
+    {
+        return new self($position->x, 1, $position->bearing);
+    }
+
     public static function alterBearingCounterClockWise(Position $position): Position
     {
         return new self($position->x, $position->y, Bearing::turnLeft($position->bearing));

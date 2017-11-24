@@ -22,12 +22,16 @@ final class Rover
     {
         $commandList = str_split($string);
         foreach ($commandList as $command) {
-            if ($command == 'l') {
+            if ($command === 'l') {
                 $this->turnLeft();
             }
 
-            if ($command == 'r') {
+            if ($command === 'r') {
                 $this->turnRight();
+            }
+
+            if ($command === 'f') {
+                $this->position = Position::moveForward($this->position);
             }
         }
 
