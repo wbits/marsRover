@@ -24,7 +24,17 @@ final class Position
 
     public static function moveForward(Position $position)
     {
-        return new self($position->x, 1, $position->bearing);
+        $direction = (string) $position->bearing;
+        switch ($direction) {
+            case 'N':
+                return new self($position->x, $position->y + 1, $position->bearing);
+            case 'S':
+                return new self($position->x, $position->y - 1, $position->bearing);
+            case 'E':
+                return new self($position->x + 1, $position->y, $position->bearing);
+            case 'W':
+                return new self($position->x - 1, $position->y, $position->bearing);
+        }
     }
 
     public static function alterBearingCounterClockWise(Position $position): Position

@@ -43,7 +43,7 @@ final class RoverTest extends TestCase
 
     public function testItCanTurnAndMoveForward()
     {
-        self::assertEquals(['x' => -0, 'y' => 0, 'h' => 'N'], $this->rover->executeCommands('rf'));
+        self::assertEquals(['x' => 1, 'y' => 0, 'h' => 'E'], $this->rover->executeCommands('rf'));
     }
 }
 
