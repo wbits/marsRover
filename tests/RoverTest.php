@@ -79,4 +79,3 @@ final class RoverTest extends TestCase
         $this->rover->executeCommands('rfffffffffff');
     }
 }
-
