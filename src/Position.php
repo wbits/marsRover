@@ -22,7 +22,9 @@ final class Position
 
     public static function createWithModifiedXPos(Position $position, callable $modify)
     {
-        return new self($modify($position->x), $position->y);
+        $newPosition = (($modify($position->x)) % 10);
+
+        return new self($newPosition, $position->y);
     }
 
     public static function createWithModifiedYPos(Position $position, callable $modify)
