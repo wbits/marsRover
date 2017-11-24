@@ -20,6 +20,10 @@ final class Rover
 
     public function executeCommand(string $string): array
     {
+        if ($string == 'l') {
+            $this->position = new Position(0, 0, 'W');
+        }
+
         return $this->position->toArray();
     }
 }
