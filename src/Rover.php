@@ -6,26 +6,21 @@ namespace Dojo;
 
 final class Rover
 {
-    private $xPosition;
-    private $yPosition;
+    private $position;
 
-    private function __construct(int $xPosition, int $yPosition) {
+    private function __construct(Position $position) {
 
-        $this->xPosition = $xPosition;
-        $this->yPosition = $yPosition;
+        $this->position = $position;
     }
 
     public static function initializeWithStartingPosition(int $x, int $y) : Rover
     {
-        return new self($x, $y);
+        return new self(new Position($x, $y));
     }
 
     public function executeCommand(string $string): array
     {
-        return [
-            'x' => $this->xPosition,
-            'y' => $this->yPosition,
-        ];
+        return $this->position->toArray();
     }
 }
 
